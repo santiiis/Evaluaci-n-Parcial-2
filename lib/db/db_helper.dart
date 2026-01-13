@@ -30,7 +30,7 @@ class DBHelper {
           await db.insert('galeria', {
             'titulo': 'Imagen $i',
             'imageUrl': 'https://picsum.photos/200/300?random=$i',
-            'autor': i % 2 == 0 ? 'VM-9' : 'OTRO-1',
+            'autor': i % 2 == 0 ? 'LG-9' : 'OTRO-1',
           });
         }
       },

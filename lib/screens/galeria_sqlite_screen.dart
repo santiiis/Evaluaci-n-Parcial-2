@@ -11,7 +11,7 @@ class GaleriaSQLiteScreen extends StatefulWidget {
 }
 
 class _GaleriaSQLiteScreenState extends State<GaleriaSQLiteScreen> {
-  final String autor = "VM-9";
+  final String autor = "LG-9";
   List<GalleryItem> lista = [];
 
   @override
@@ -22,14 +22,6 @@ class _GaleriaSQLiteScreenState extends State<GaleriaSQLiteScreen> {
 
   Future<void> cargarSoloAutor() async {
     final data = await DBHelper.getByAutor(autor);
-    setState(() {
-      lista = data.map((e) => GalleryItem.fromMap(e)).toList();
-    });
-  }
-
-  Future<void> cargarTodas() async {
-    final db = await DBHelper.database;
-    final data = await db.query('galeria');
     setState(() {
       lista = data.map((e) => GalleryItem.fromMap(e)).toList();
     });
@@ -47,27 +39,6 @@ class _GaleriaSQLiteScreenState extends State<GaleriaSQLiteScreen> {
             child: Text(
               "Autor: $autor",
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-          ),
-
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: cargarSoloAutor,
-                    child: const Text("Ver mis fotos"),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: cargarTodas,
-                    child: const Text("Ver todas las fotos"),
-                  ),
-                ),
-              ],
             ),
           ),
 
